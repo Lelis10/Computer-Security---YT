@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Properties</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  input, button {
+    margin: 10px;
+  }
+</style>
+</head>
+<body>
+  <h1>Number Properties</h1>
+
+  <h2>Prime Number Checker</h2>
+  <input type="number" id="primeNumberInput" placeholder="Enter a number">
+  <button onclick="checkPrime()">Check Prime</button>
+  <p id="primeResult"></p>
+
+  <h2>GCD Calculator</h2>
+  <input type="number" id="gcdNumber1" placeholder="Enter first number">
+  <input type="number" id="gcdNumber2" placeholder="Enter second number">
+  <button onclick="calculateGCD()">Calculate GCD</button>
+  <p id="gcdResult"></p>
+
+  <script>
+    function checkPrime() {
+      const num = document.getElementById('primeNumberInput').value;
+      let isPrime = true;
+      if (num <= 1) {
+        isPrime = false;
+      } else {
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) {
+            isPrime = false;
+            break;
+          }
+        }
+      }
+      document.getElementById('primeResult').innerText = isPrime ? `${num} is a prime number` : `${num} is not a prime number`;
+    }
+
+    function calculateGCD() {
+      const num1 = document.getElementById('gcdNumber1').value;
+      const num2 = document.getElementById('gcdNumber2').value;
+      const gcd = (a, b) => {
+        if (b === 0) return a;
+        return gcd(b, a % b);
+      }
+      const result = gcd(num1, num2);
+      document.getElementById('gcdResult').innerText = `GCD of ${num1} and ${num2} is: ${result}`;
+    }
+  </script>
+</body>
+</html>
